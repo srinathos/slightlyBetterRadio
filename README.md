@@ -50,3 +50,14 @@ Adapted from [here](https://github.com/drivendata/cookiecutter-data-science). Le
 │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
 │       └── visualize.py
 ```
+
+
+## Usage
+### Downloading the dataset
+Downloading audio files from youtube videos/playlists
+```
+./src/data/download_dataset.py input_file1 input_file2 ... input_fileN
+```
+
+input_file is a list of youtube playlist/video links. Can use # for comments within the file.
+For examples, see [here](https://github.com/srinathos/slightlyBetterRadio/tree/rao_dataset_download/data/raw/playlists)
