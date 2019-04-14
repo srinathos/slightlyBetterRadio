@@ -1,6 +1,7 @@
 from pytube import YouTube
 from pytube import Playlist
 from moviepy.editor import *
+import sys
 
 
 def playlist_download():
@@ -15,9 +16,16 @@ def audio_download(url):
     audio[0].download()
 
 
+def usage():
+    print("Usage: python3 radio.py input_file1 input_file2 ... input_fileN")
+
+
 def main():
-    url = "https://www.youtube.com/watch?v=QnLMW08EdtE"
-    audio_download(url)
+    if len(sys.argv) < 2:
+        usage()
+    else:
+        url = "https://www.youtube.com/watch?v=QnLMW08EdtE"
+        audio_download(url)
 
 
 if __name__ == '__main__':
