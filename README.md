@@ -1,13 +1,11 @@
 # Intro
 
 Radio ads are annoying. 
-Skipping through every channel until you find something you don't mind listening to is more annoying.     
+Skipping through every channel until you find something you don't mind listening to is more annoying. 
 What if you could know which channels have music playing and which ones have ads playing?
+
 The goal of this project is to make radio bearable.
-We explore the idea of identifying what's playing at a radio station using machine learning. 
-
-
-We propose to achieve this task using machine learning to classify audio streams into two categories -- Ads and music. 
+We explore the idea of identifying what's playing at a radio station using machine learning -- Ads or music?. 
 
 ## First stage
 - Build dataset from music samples and radio advert samples. 
