@@ -7,6 +7,8 @@ from sklearn.neural_network import MLPClassifier
 from mlxtend.plotting import plot_confusion_matrix
 import matplotlib.pyplot as plt
 from sklearn.utils.multiclass import unique_labels
+import pickle
+import os
 
 
 def plot_confusion_matrix(test_y, predictions, classifier):
@@ -72,9 +74,10 @@ def mlp_classifier(train_x, train_y, test_x, test_y):
     accuracy = metrics.accuracy_score(test_y, prediction)
     print("Accuracy for MLP classifier:", accuracy)
     plot_confusion_matrix(test_y, prediction, "MLP")
+    return classifier
 
 
-def data_split(data):
+def data_split(data, path):
 
     features = data.iloc[:, :-1]
     target = data.iloc[:, -1]
@@ -84,7 +87,14 @@ def data_split(data):
     # svm_classifier(train_x, train_y, test_x, test_y)
 
     # Function call for MLP
-    mlp_classifier(train_x, train_y, test_x, test_y)
+    model = mlp_classifier(train_x, train_y, test_x, test_y)
+    file_name = 'mlp_classifier.txt'
+    save_model(path, model, file_name)
+
+
+def save_model(path, classifier, file_name):
+    with open(os.path.join(path, file_name), 'wb') as model:
+        pickle.dump(classifier, model)
 
 
 def main():
@@ -102,8 +112,9 @@ def main():
     result = ads_df.append(music_df)
 
     # Shuffle the rows of the combined df
+    path = "../models/"
     result = result.sample(frac=1).reset_index(drop=True)
-    data_split(result)
+    data_split(result, path)
 
 
 if __name__ == '__main__':
