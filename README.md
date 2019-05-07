@@ -1,16 +1,26 @@
 # Intro
 
-The goal of this project is to make radio bearable. We propose to achieve this task using machine learning to classify audio streams into two categories -- Ads and music. 
+Radio ads are annoying. 
+Skipping through every channel until you find something you don't mind listening to is more annoying.     
+What if you could know which channels have music playing and which ones have ads playing?
+The goal of this project is to make radio bearable.
+We explore the idea of identifying what's playing at a radio station using machine learning. 
+
+
+We propose to achieve this task using machine learning to classify audio streams into two categories -- Ads and music. 
 
 ## First stage
-- Build classifier that categorizes an audio sample into either 'ad' or 'music'
+- Build dataset from music samples and radio advert samples. 
+- Feature extraction from these samples. 
+    - Currently using only [MFCC](http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/) for features. 
+- Build and train classifier that categorizes an audio sample into either 'ad' or 'music'.
 
 ## Second stage
-Some find the discussions on radio streams to be interesting. Such portion deserver their own label and our classifier should be able to extend to this
+Some find the discussions on radio streams to be interesting. These sections should have their own label and our classifier should be able to extend to this.
 - Add 'talk' label to the classifier. 
     - Train on generate conversation patterns perhaps?
 - Recognize song titles
-    - Should be straigtforward to use a shazam-like API to figure out which song the classified sample belongs to
+    - Should be straigtforward to use a audio fingerprinting API to figure out which song the classified sample belongs to.
    
    
 ## Working on this project
