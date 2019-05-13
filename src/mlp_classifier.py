@@ -77,19 +77,24 @@ def mlp_classifier(train_x, train_y, test_x, test_y):
     return classifier
 
 
-def data_split(data, path):
+def train_model(train_x, test_x, train_y, test_y,
+                classifier=mlp_classifier, save=True, path="../../models/"):
 
+    # Training classifier
+    model = classifier(train_x, train_y, test_x, test_y)
+    if save:
+        file_name = 'mlp_classifier.pickle'
+        save_model(path, model, file_name)
+
+
+def data_split(data):
+
+    # Splitting data frame into features and target
     features = data.iloc[:, :-1]
     target = data.iloc[:, -1]
     train_x, test_x, train_y, test_y = model_selection.train_test_split(features, target, test_size=0.3)
 
-    # Function call for SVM classifier
-    # svm_classifier(train_x, train_y, test_x, test_y)
-
-    # Function call for MLP
-    model = mlp_classifier(train_x, train_y, test_x, test_y)
-    file_name = 'mlp_classifier.txt'
-    save_model(path, model, file_name)
+    return train_x, test_x, train_y, test_y
 
 
 def save_model(path, classifier, file_name):
@@ -101,21 +106,20 @@ def main():
     ads_df = pd.read_csv("../data/processed/ads.csv", header=None)
     music_df = pd.read_csv("../data/processed/music.csv", header=None)
 
-    # shorten the df
+    # Fixing class imbalance by sampling
     music_df = music_df.iloc[0:ads_df.shape[0], :]
 
-    # Add the target variable
+    # Adding target class information for each sample
     ads_df["13"] = 0
     music_df["13"] = 1
 
-    # Concatenate both the dfs
+    # Concatenating samples from each class
     result = ads_df.append(music_df)
 
-    # Shuffle the rows of the combined df
-    path = "../models/"
+    # Shuffling data samples
     result = result.sample(frac=1).reset_index(drop=True)
-    data_split(result, path)
-
+    train_x, test_x, train_y, test_y = data_split(result)
+    train_model(train_x, test_x, train_y, test_y)
 
 if __name__ == '__main__':
     main()
