@@ -1,0 +1,15 @@
+Inputs for the data frame: 213751 rows, 14 columns
+MLP structure: 13, 100, 100, 2
+
+Accuracy for MLP classifier: 0.9325229432908905
+
+Classification report:
+               	      precision   recall  f1-score   support
+
+           0     	 	 0.92      0.94      0.93     64172
+           1     	 	 0.94      0.92      0.93     64079
+
+   micro avg      	 0.93      0.93      0.93    128251
+   macro avg     	 0.93      0.93      0.93    128251
+weighted avg    	 0.93      0.93      0.93    128251
+
