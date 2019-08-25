@@ -66,6 +66,7 @@ def svm_classifier(train_x, train_y, test_x, test_y):
     plot_confusion_matrix(test_y, prediction, "SVM")
     return classifier
 
+
 def mlp_classifier(train_x, train_y, test_x, test_y):
 
     classifier = MLPClassifier(hidden_layer_sizes=(100, 100))
@@ -118,7 +119,13 @@ def main():
     # Shuffling data samples
     result = result.sample(frac=1).reset_index(drop=True)
     train_x, test_x, train_y, test_y = data_split(result)
+
+    # Function call for an MLP classifier
     train_model(train_x, test_x, train_y, test_y)
+
+    # Function call for an SVM classifier
+    train_model(train_x, test_x, train_y, test_y, classifier=svm_classifier, file_name='svm_classifier.pickle')
+
 
 if __name__ == '__main__':
     main()
