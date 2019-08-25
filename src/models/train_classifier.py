@@ -64,7 +64,7 @@ def svm_classifier(train_x, train_y, test_x, test_y):
     accuracy = metrics.accuracy_score(test_y, prediction)
     print("Accuracy for the SVM classifier:", accuracy)
     plot_confusion_matrix(test_y, prediction, "SVM")
-
+    return classifier
 
 def mlp_classifier(train_x, train_y, test_x, test_y):
 
@@ -78,12 +78,11 @@ def mlp_classifier(train_x, train_y, test_x, test_y):
 
 
 def train_model(train_x, test_x, train_y, test_y,
-                classifier=mlp_classifier, save=True, path="../../models/"):
+                classifier=mlp_classifier, file_name='mlp_classifier.pickle', save=True, path="../../models/"):
 
     # Training classifier
     model = classifier(train_x, train_y, test_x, test_y)
     if save:
-        file_name = 'mlp_classifier.pickle'
         save_model(path, model, file_name)
 
 
